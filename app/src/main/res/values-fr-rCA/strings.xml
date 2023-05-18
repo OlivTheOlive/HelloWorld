@@ -3,4 +3,7 @@
     <string name="app_name">Olivie\'s lab app</string>
     <string name="hello_message">Bonjours tout le monde!</string>
     <string name="button_message">Je suis un bouton</string>
+    <string name="edit_message">Je suis un EditText</string>
+    <string name="hint_text">Ecrit quelque chose ici</string>
+
 </resources>
