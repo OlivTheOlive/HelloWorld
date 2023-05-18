@@ -8,14 +8,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.helloworld.databinding.ActivityMainBinding;
+
 import java.text.BreakIterator;
 
 public class MainActivity extends AppCompatActivity {
+    private ActivityMainBinding variableBinding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        variableBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(variableBinding.getRoot());
 
         TextView theText =  findViewById( R.id.theText );
 
