@@ -4,32 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="ui.MainActivity">
 
     <TextView
+        android:id="@+id/theText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hello_message"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/theText"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
+        android:id="@+id/theEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/edit_message"
-        android:id="@+id/theEditText"
-        android:hint="@string/hint_text"/>
+        android:hint="@string/hint_text"
+        android:text="@string/edit_message" />
 
     <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="69dp"
         android:text="@string/button_message"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/button"/>
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioButton
+        android:id="@+id/radioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Do you Drink Coffee?" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Do you Drink Coffee?" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Do you Drink Coffee?" />
+
+    <ImageView
+        android:id="@+id/schoolImg"
+        android:layout_width="312dp"
+        android:layout_height="80dp"
+        android:layout_margin="30dp"
+        android:src="@drawable/img" />
+
+    <ImageButton
+        android:id="@+id/myImgButton"
+        android:layout_width="wrap_content"
+        android:layout_height="97dp"
+        android:layout_margin="30dp"
+        android:src="@drawable/img" />
 </LinearLayout>
