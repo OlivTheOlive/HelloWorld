@@ -24,13 +24,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:text="Button"
-        app:layout_constraintEnd_toStartOf="@+id/button5"
+        app:layout_constraintEnd_toStartOf="@+id/button3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button1"
         app:layout_constraintTop_toTopOf="@+id/button1" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -39,4 +39,26 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="@+id/button2" />
+
+
+    <ImageView
+        android:id="@+id/flag_view"
+        android:layout_width="119dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/flag"
+        app:layout_constraintStart_toStartOf="@+id/button1"
+        app:layout_constraintTop_toBottomOf="@+id/button1" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:text="@string/switch_message"
+        app:layout_constraintBottom_toBottomOf="@+id/flag_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/flag_view"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
