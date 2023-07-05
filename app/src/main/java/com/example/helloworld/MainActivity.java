@@ -1,77 +1,118 @@
 package com.example.helloworld;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static java.lang.Character.isDigit;
+import static java.lang.Character.isLowerCase;
+import static java.lang.Character.isUpperCase;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
+
+/**
+ * Class javadoc
+ *
+ * @author oliviebergeron
+ * @version 1.0
+ */
 public class MainActivity extends AppCompatActivity {
-    private static String TAG = "MainActivity";
-
-    private static  final String SHARED_PREF = "Data";
-    private SharedPreferences sharedPreferences;
-
-    private static final String EMAIL_KEY = "EMAIL";
-
-
+    /**
+     *
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_main);
-        Button loginButton = findViewById(R.id.loginButton);
-        EditText emailEditText = findViewById(R.id.editTextmailAddress);
-        String emailAddress = emailEditText.getText().toString();
-
-
-        sharedPreferences = getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE);
-        String savedEmail = sharedPreferences.getString(EMAIL_KEY,"");
-        emailEditText.setText(savedEmail);
-
-
         super.onCreate(savedInstanceState);
-        Log.w( "MainActivity", "In onCreate() - Loading Widgets" );
-        Intent nextPage = new Intent( MainActivity.this, secondActivity.class);
-        loginButton.setOnClickListener( clk-> {
-                Intent:
-                nextPage.putExtra("EmailAddress", emailEditText.getText().toString());
-                startActivity(nextPage);
+        setContentView(R.layout.activity_main);
 
-                String email = emailEditText.getText().toString();
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(EMAIL_KEY,email);
-                editor.apply();
-            });
+        TextView tv = findViewById(R.id.textView3);
+        EditText et = findViewById(R.id.editTextPassword);
+        Button btn = findViewById(R.id.loginButton);
 
-    }
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.w( "MainActivity", "In onStart - now visible on screen" );
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.w( "MainActivity", "In onResume - app is now responding to user input" );
-    }
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.w( "MainActivity", "In onPause() - app is now not responding to user input");
-    }
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.w( "MainActivity", "In onStop() - app no longer visible" );
+        btn.setOnClickListener( clk ->{
+            String password = et.getText().toString();
+            if(checkPasswordComplexity( password ) == true){
+                tv.setText("password checks out");
+            }else{
+                tv.setText("incorrect password format");
+            }
+
+
+        });
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.w( "MainActivity", "In onDestroy() - memory used freed" );
+    /** This function checks for password complexity.
+     *
+     * @param pw The string object that we are checking for complexity
+     * @return Returns true if
+     */
+    boolean checkPasswordComplexity(String pw){
+        boolean foundUpperCase, foundLowerCase, foundNumber, foundSpecial;
+        foundUpperCase = foundLowerCase = foundNumber = foundSpecial = false;
+        int duration = Toast.LENGTH_SHORT;
+        char c;
+
+
+        for(int i = 0; i <pw.length(); i++){
+            c = pw.charAt(i) ;
+            if (isDigit(c)){
+                foundNumber = true;
+            }
+            else if (isUpperCase(c)) {
+                foundUpperCase = true;
+            }
+            else if(isLowerCase(c)) {
+                foundLowerCase = true;
+            }
+            else{
+                switch (c){
+                    case '/':
+                    case '(':
+                    case ')':
+                    case '*':
+                    case '&':
+                    case '^':
+                    case '%':
+                    case '$':
+                    case '#':
+                    case '@':
+                    case '!':
+                    case '<':
+                        return foundSpecial = true;
+                    default:
+                        return foundSpecial = false;
+
+                }
+            }
+
+        }
+
+        if(!foundUpperCase){
+            Toast.makeText(this, "missing uppercase", duration).show();
+            return false;
+        } else if(!foundLowerCase){
+            Toast.makeText(this, "missing lowercase", duration).show();
+            return false;
+        }
+        else if(!foundNumber){
+            Toast.makeText(this, "missing number", duration).show();
+            return false;
+        }
+        else if(!foundSpecial){
+            Toast.makeText(this, "missing special Char", duration).show();
+            return false;
+        } else{
+            return true;
+        }
+
+
     }
+
 }
