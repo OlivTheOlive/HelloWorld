@@ -24,6 +24,7 @@ public class ChatMessage {
         isSentButton = sent;
     }
 
+    public ChatMessage(){};
     public boolean isSentButton() {
         return isSentButton;
     }
