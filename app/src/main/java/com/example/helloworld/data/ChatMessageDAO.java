@@ -1,11 +1,9 @@
-package com.example.helloworld.DAO;
+package com.example.helloworld.data;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-
-import com.example.helloworld.data.ChatMessage;
 
 import java.util.List;
 @Dao

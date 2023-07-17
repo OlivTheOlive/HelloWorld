@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
-import com.example.helloworld.DAO.ChatMessageDAO;
+import com.example.helloworld.data.ChatMessageDAO;
 import com.example.helloworld.data.ChatMessage;
 import com.example.helloworld.data.ChatRoomViewModel;
 import com.example.helloworld.data.MessageDatabase;
