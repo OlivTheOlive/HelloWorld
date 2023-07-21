@@ -1,9 +1,6 @@
 plugins {
     id 'com.android.application'
 }
-
-
-
 android {
     namespace 'com.example.helloworld'
     compileSdk 33

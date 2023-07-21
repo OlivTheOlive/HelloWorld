@@ -8,15 +8,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
-import com.example.helloworld.data.ChatMessageDAO;
 import com.example.helloworld.data.ChatMessage;
+import com.example.helloworld.data.ChatMessageDAO;
 import com.example.helloworld.data.ChatRoomViewModel;
 import com.example.helloworld.data.MessageDatabase;
+import com.example.helloworld.data.MessageDetailsFragment;
 import com.example.helloworld.databinding.ActivityChatRoomBinding;
 import com.example.helloworld.databinding.ReceiveMessageBinding;
 import com.example.helloworld.databinding.SentMessageBinding;
@@ -42,6 +45,7 @@ public class ChatRoom extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         chatModel = new ViewModelProvider(this).get(ChatRoomViewModel.class);
         messages = chatModel.messages.getValue();
         db = Room.databaseBuilder(getApplicationContext(), MessageDatabase.class, "database-name").build();
@@ -58,6 +62,17 @@ public class ChatRoom extends AppCompatActivity {
         }
         binding = ActivityChatRoomBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        chatModel.selectedMessage.observe(this, (newMessageValue) -> {
+            FragmentManager fMgr = getSupportFragmentManager();
+            FragmentTransaction tx = fMgr.beginTransaction();
+            MessageDetailsFragment chatFragment = new MessageDetailsFragment(newMessageValue);
+            //replace maybe
+            tx.replace(R.id.fragmentLocation, chatFragment);
+            tx.addToBackStack("");
+            tx.commit();
+
+
+        });
 
         binding.recycleView.setAdapter(myAdapter = new RecyclerView.Adapter<MyRowHolder>() {
             @NonNull
@@ -147,7 +162,13 @@ public class ChatRoom extends AppCompatActivity {
         public MyRowHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(clk -> {
+
                 int position = getAbsoluteAdapterPosition();
+                ChatMessage selected = messages.get(position);
+
+                chatModel.selectedMessage.postValue(selected);
+
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(ChatRoom.this);
                 builder.setTitle("Question:")
                         .setMessage("Do you want to delete the message: " + messageText.getText())
