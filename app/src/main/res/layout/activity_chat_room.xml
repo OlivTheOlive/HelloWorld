@@ -36,7 +36,12 @@
             android:id="@+id/fragmentLocation"
             android:layout_width="409dp"
             android:layout_height="639dp"
-            tools:layout_editor_absoluteY="152dp">
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleView"
