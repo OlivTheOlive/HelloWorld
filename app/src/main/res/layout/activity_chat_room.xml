@@ -34,14 +34,12 @@
 
         <FrameLayout
             android:id="@+id/fragmentLocation"
-            android:layout_width="409dp"
-            android:layout_height="639dp"
+            android:layout_width="0dp"
+            android:layout_height="511dp"
             android:layout_marginEnd="2dp"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/toolbarID">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycleView"
@@ -49,15 +47,27 @@
                 android:layout_height="541dp"
                 android:layout_marginTop="16dp" />
         </FrameLayout>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarID"
+            android:layout_width="369dp"
+            android:layout_height="57dp"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="167dp"
-        android:layout_height="43dp"
+        android:layout_width="131dp"
+        android:layout_height="38dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="message"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="@+id/receiveButton"
         app:layout_constraintEnd_toStartOf="@+id/receiveButton"
         app:layout_constraintStart_toEndOf="@+id/sendButton"
         app:layout_constraintTop_toTopOf="@+id/sendButton" />
